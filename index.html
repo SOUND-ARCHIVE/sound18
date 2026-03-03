@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sound</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  height: 100%;
+  overflow: hidden;
+}
+
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+</style>
+</head>
+
+<body>
+
+<video id="v" playsinline preload="auto" poster="thumb.png">
+  <source src="video.mp4" type="video/mp4">
+</video>
+
+<script>
+const v = document.getElementById("v");
+
+// 画面タップで再生／停止トグル
+document.addEventListener("pointerdown", () => {
+  if (v.paused) {
+    v.play().then(() => {
+      // 再生開始後に必要であれば音量を調整
+      v.muted = false;
+    });
+  } else {
+    v.pause();
+  }
+});
+</script>
